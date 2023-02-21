@@ -1,0 +1,19 @@
+from queue import PriorityQueue
+import sys
+
+input = sys.stdin.readline
+print = sys.stdout.write
+
+A = PriorityQueue()
+n = int(input())
+
+for i in range(n):
+    r = int(input())
+    if r == 0:
+        if A.empty():
+            print('0')
+        else:
+            print(str(A.get()[1]) + '\n')
+    else:
+        A.put((abs(r), r))
+

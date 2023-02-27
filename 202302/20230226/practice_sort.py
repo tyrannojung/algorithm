@@ -22,6 +22,45 @@
 
 #삽입정렬
 
+n = int(input())
+n_list = list(map(int, input().split()))
+
+#31432
+#13432
+#13432
+#13342
+#12334
+for i in range(n-1):
+    temp = 0;
+    num = -1;
+    for z in range(i+1):
+        if n_list[z] > n_list[i+1]:
+            temp = n_list[z]
+            num = z
+            n_list[z] = n_list[i+1]
+            break;
+
+
+    c_num = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

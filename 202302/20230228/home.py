@@ -8,10 +8,13 @@
 
 import sys
 sys.setrecursionlimit(10000)
+input = sys.stdin.readline
+print = sys.stdout.write
+
 
 n = int(input())
 
-#소수판별 함수
+
 def check_prime(param):
     for i in range(2, param):
         if param % i == 0:
@@ -19,26 +22,20 @@ def check_prime(param):
     return True
 
 
-
 def calcul(param):
-    for i in range(10):
-        num = int(str(i) + str(param))
-        leng = len(str(i) + str(param))
-        print(num)
-        print(leng)
-
-        # if num == 1:
-        #     break;
-        #
-        # if check_prime(num) and leng < n+1:
-        #     calcul(num)
-        #     if leng == 4:
-        #         print(num)
-
+    for i in range(1, 10):
+        num = int(str(param) + str(i))
+        if check_prime(num):
+            leng = len(str(num))
+            if leng == n:
+                print(str(num) + '\n')
+            elif leng < n + 1:
+                calcul(num)
 
 for i in range(10):
     calcul(i)
 
 
+#n^3으로 시간복잡도 실패
 
 

@@ -23,17 +23,14 @@ print(initialize_dps)
 
 def DFS(param):
     for m in range(len(param)):
-        print("param =====" + str(initialize_dps[m]))
-        print("init ====" + str(initialize_dps[m]))
-        print(initialize_check)
         if not initialize_check[m]:
             initialize_check[m] = True
             DFS(initialize_dps[m])
-        else:
-            continue
 
 
 for i in range(n):
+    initialize_dps_function()
     initialize_check[i] = True
     DFS(initialize_dps[i])
+    print(initialize_check)
 

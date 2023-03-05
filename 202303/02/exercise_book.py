@@ -19,16 +19,26 @@ for i in range(e):
     initialize_dps[x].append(k)
 
 print(initialize_dps)
+count = 0
+
 
 def DFS(param):
+    global count
     for m in range(len(param)):
+        initialize_dps_function()
         if not initialize_check[m]:
+            count += 1
             initialize_check[m] = True
+            print(count)
+            if count == 4:
+                print(initialize_check)
+                break
             DFS(initialize_dps[m])
+        else:
+            break
 
 
 for i in range(n):
-    initialize_dps_function()
     DFS(initialize_dps[i])
     print(initialize_check)
 

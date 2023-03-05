@@ -6,7 +6,6 @@ n, e = map(int, input().split())
 
 initialize_dps = [[] for _ in range(n)]
 initialize_check = [False for _ in range(n)]
-answer = [True for _ in range(n)]
 
 def initialize_dps_function(param):
     global initialize_check
@@ -20,20 +19,25 @@ for i in range(e):
     initialize_dps[k].append(x)
     initialize_dps[x].append(k)
 
-print(initialize_dps)
-
 check_answer = 0
+
+
 def DFS(param):
     global check_answer
     count = 0
+    if check_answer == 1:
+        return False
     for m in param:
         if not initialize_check[m]:
             initialize_check[m] = True
-            if answer == initialize_check:
+            if initialize_check.count(True) == 5:
                 check_answer = 1
+                return False
             if DFS(initialize_dps[m]):
                 initialize_check[m] = False
                 count += 1
+            if check_answer == 1:
+                return False
         else:
             count += 1
     if count == len(param):
@@ -45,6 +49,8 @@ def DFS(param):
 for i in range(n):
     initialize_dps_function(i)
     DFS(initialize_dps[i])
+    if check_answer == 1:
+        break
 
 print(check_answer)
 

@@ -22,9 +22,6 @@ for i in A:
 
 
 dfs_list = list()
-bfs_list = list()
-print(A)
-
 
 
 def DFS(param):
@@ -34,23 +31,42 @@ def DFS(param):
             dfs_list.append(k)
             DFS(k)
 
+
+
 deque_list = deque([])
+bfs_list = list()
+
+
 def BFS(param):
+    global bfs_list
     for o in A[param]:
         deque_list.append(o)
+        bfs_list.append(o)
+        B[o] = True
+
     while True:
-        if deque_list:
-            print("내일마무리")
+        if not deque_list:
+            break
+
+        value = deque_list.popleft()
+        for r in A[value]:
+            if not B[r]:
+                deque_list.append(r)
+                bfs_list.append(r)
+                B[r] = True
 
 
 
 dfs_list.append(p)
 D[p] = True
 DFS(p)
+print(*dfs_list)
+
+
+bfs_list.append(p)
 B[p] = True
 BFS(p)
+print(*bfs_list)
 
-print(dfs_list)
-print(bfs_list)
-print(B)
+
 

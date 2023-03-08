@@ -3,7 +3,6 @@ sys.setrecursionlimit(10000)
 
 n, e = map(int, input().split())
 A = []
-B = []
 
 for _ in range(n):
     value = list(map(int, input()))
@@ -14,6 +13,7 @@ def rb_function(param):
     right_list = [0] * 2
     bottom_list = [0] * 2
     top_list = [0] * 2
+    left_list = [0] * 2
 
     if param[1] + 1 == e:
         right_list[0] = 0
@@ -36,9 +36,17 @@ def rb_function(param):
         top_list[0] = param[0] - 1
         top_list[1] = param[1]
 
+    if param[1] == 0:
+        left_list[0] = 0
+        left_list[1] = 0
+    else:
+        left_list[0] = param[0]
+        left_list[1] = param[1] - 1
+
     r_list.append(right_list)
     r_list.append(bottom_list)
     r_list.append(top_list)
+    r_list.append(left_list)
 
     return r_list
 
@@ -71,7 +79,7 @@ def DFS(param):
                     check_count += 1
         else:
             check_count += 1
-        if check_count == 3:
+        if check_count == 4:
             A[param[0]][param[1]] = 0
             count -= 1
             return True

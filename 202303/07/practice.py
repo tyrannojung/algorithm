@@ -5,7 +5,7 @@ n, e = map(int, input().split())
 A = []
 
 for _ in range(n):
-    value = list(map(int, input()))
+    value = list(map(int, list(input())))
     A.append(value)
 
 def rb_function(param):
@@ -45,8 +45,8 @@ def rb_function(param):
 
     r_list.append(right_list)
     r_list.append(bottom_list)
-    r_list.append(top_list)
     r_list.append(left_list)
+    r_list.append(top_list)
 
     return r_list
 

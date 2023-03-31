@@ -2,14 +2,12 @@
 
 n, e = map(int, input().split())
 n_list = list(map(int, input().split()))
-n_list.sort()
 min_num = max(n_list)
 max_num = sum(n_list)
 
-for z in range(100):
+while True:
     check_sum = max_num + min_num
 
-    print(max_num, min_num)
     if check_sum % 2 != 0:
         check_sum + 1
 
@@ -22,11 +20,16 @@ for z in range(100):
             sum = 0
             sum += n_list[i]
             count += 1
-    print("count == " + str(count))
 
     if count < e:
+        if k == min_num:
+            print(k)
+            break
         max_num = k - 1
     elif count > e:
+        if k == max_num:
+            print(k)
+            break
         min_num = k + 1
     elif count == e:
         max_num = k

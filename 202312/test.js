@@ -747,3 +747,199 @@
 // }
 
 // console.log(final_value)
+
+// const fs = require('fs')
+// const input = fs.readFileSync('example.txt').toString().trim().split('')
+// console.log(input)
+
+// let stick_stack = []
+// let totalLaserCount = 0
+// let currentLaserPosition = 0
+// let tree_count = 0
+
+// for(let i = 0; i < input.length; i++){
+//     if('(' == input[i]){
+//         if(')' == input[i + 1]){
+//             // laser 일때,
+//             totalLaserCount += 1
+//             currentLaserPosition += 1
+            
+//             continue
+//         }
+//         // 막대일때.    
+//         stick_stack.push('|')
+//     } else {
+//         // laser지만, 막대가 없을때. 초기화
+//         if(stick_stack.length == 0){
+//             console.log('아무것도 없다.')
+//             totalLaserCount -= 1
+//             currentLaserPosition -= 1
+//             continue
+//         } 
+
+//         if('(' == input[i - 1]){
+//             continue
+//         }
+
+//         // 막대기가 닫을때,
+//         stick_stack.pop()
+
+//         if(currentLaserPosition == 0){
+//             tree_count += totalLaserCount + 1
+//             console.log(totalLaserCount, currentLaserPosition, tree_count)
+//             if(stick_stack.length == 0){
+//                 totalLaserCount = 0
+//                 continue
+//             }
+//         }
+//         //여기 몇번?
+//         tree_count += currentLaserPosition + 1
+//         currentLaserPosition = 0
+//         console.log(totalLaserCount, currentLaserPosition, tree_count)
+//     }
+
+// }
+// console.log(tree_count)
+
+
+
+// 초고속 풀이
+// const fs = require("fs");
+// const s = fs.readFileSync("example.txt").toString().trim()
+// /*
+// '('=> 쇠 막대기 시작
+// ')'=> 쇠 막대기 끝
+// "()"=> 레이저저어어엉
+
+// */
+// // 레이저를 모두 변경해준다.
+// const replaced=s.replaceAll("()", "L").split("");
+// //'('을 만나면 넣어주고, ')'만나면 하나씩 빼준다.
+// const steal=[]
+// let total=0;
+// replaced.forEach(i=>{
+//     if(i==="(")steal.push(i);
+//     if (i===')'){
+//         steal.pop();
+//         total++
+//     }
+//     if(i==="L"){
+//         total+=steal.length;
+//     }  
+//     console.log( steal)  
+//     console.log( total)  
+// })
+ 
+
+/*17298 제출할때는 /dev/stdin로 변경*/
+// const fs = require('fs')
+// const [num, arrayInput] = fs.readFileSync('example.txt').toString().trim().split('\n')
+
+// const checkValue = arrayInput.split(' ').map(Number)
+// const checkArray = [checkValue[checkValue.length -1]]
+// const resultValue = [-1]
+
+// for(let i = num - 2; 0 <= i; i--){
+//     let checkValueChoince = checkValue[i]
+//     let newCheckArray = [...checkArray].reverse()
+//     checkArray.push(checkValueChoince)
+//     let check = false
+//     for(z = 0; z < newCheckArray.length; z++){
+//         if (checkValueChoince < newCheckArray[z]){
+//             resultValue.push(newCheckArray[z])
+//             check = true
+//             break
+//         }
+//     }
+//     if(!check){
+//         resultValue.push(-1)
+//     }
+
+// } 
+// console.log(resultValue.reverse().join(' '))
+
+/*17298 제출할때는 /dev/stdin로 변경*/
+// const fs = require('fs')
+// const [num, input] = fs.readFileSync('example.txt').toString().trim().split('\n')
+// console.log(num, input)
+// const inputArray = input.split(' ').map(Number)
+// const resultArray = []
+
+// let z = 0;
+// let rightMax = -1
+// while(true){
+    
+//     let value = inputArray.pop()
+//     if(resultArray.length == num -1){
+//         resultArray.push(-1)
+//         break
+//     }
+//     console.log("value === ",value)
+//     console.log("z=====", inputArray[z])
+
+//     if(inputArray[z] < value){
+//         rightMax = value
+//     }
+    
+//     inputArray.unshift(value)
+//     z++
+    
+//     console.log(inputArray)
+//     if(z == inputArray.length - 1){
+//         inputArray.pop()
+//         resultArray.push(rightMax)
+//         z = 0
+//         rightMax = -1
+//     }
+// }
+// console.log("resultArray===",resultArray)
+
+/*17298 제출할때는 /dev/stdin로 변경*/
+// const fs = require('fs')
+// const [num, input] = fs.readFileSync('example.txt').toString().trim().split('\n')
+
+// const inputArray = input.split(' ').map(Number)
+// const resultArray = Array.from({length:num}, () => -1)
+// const checkStack = []
+
+// for(let i = 0; i < num; i ++){
+//     while(checkStack.length && inputArray[checkStack[checkStack.length - 1]] < inputArray[i]){
+//         resultArray[checkStack.pop()] = inputArray[i]
+//     }
+//     checkStack.push(i)
+// }
+
+// console.log(resultArray.join(' '))
+
+/*17299 제출할때는 /dev/stdin로 변경*/
+
+// const fs = require('fs')
+// const [num, input] = fs.readFileSync('example.txt').toString().trim().split('\n')
+
+// const inputArray = input.split(' ').map(Number)
+// const inputArray2 = []
+// const resultArray = Array.from({length:num}, () => -1)
+// const countArray = Array.from({length:1000001}, () => 0)
+// const stackArray = []
+
+// for(let i = 0; i < num; i++){
+//     countArray[inputArray[i]] += 1 
+// }
+
+// for(let i = 0; i < num; i++){
+//     inputArray2.push(countArray[inputArray[i]])
+// }
+
+// for(let i = 0; i< num; i++){
+//     while(stackArray.length && inputArray2[stackArray[stackArray.length - 1]] < inputArray2[i]){
+//         resultArray[stackArray.pop()] = inputArray[i]
+//     }
+//     stackArray.push(i)    
+// }
+
+// console.log(resultArray.join(' '))
+
+
+
+
+
